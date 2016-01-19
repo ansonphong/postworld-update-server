@@ -6,7 +6,7 @@ function wp_updater_post_types(){
 
 	///// POST TYPE : THEME /////
 	$theme_labels = array(
-		'name' => "Theme",
+		'name' => "Themes",
 		'singular_name' => "Theme",
 		'add_new' => 'New Theme',
 		'add_new_item' => 'New Theme',
@@ -18,7 +18,7 @@ function wp_updater_post_types(){
 		'not_found' =>  'Nothing found',
 		'not_found_in_trash' => 'No Themes found in Trash', 
 		'parent_item_colon' => '',
-		'menu_name' => 'Theme'
+		'menu_name' => 'Themes'
 	);
 	
 	$theme_vars = array(
@@ -35,7 +35,7 @@ function wp_updater_post_types(){
 		'menu_position' => 7,
 		'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author' ),
 		'taxonomies' => array(),
-		'menu_icon' => '',
+		'menu_icon' => 'dashicons-welcome-view-site',
 	);
 	register_post_type( 'theme', $theme_vars );
 
@@ -74,6 +74,20 @@ function wp_updater_post_types(){
 		'menu_icon' => 'dashicons-album',
 	);
 	register_post_type( 'theme_version', $theme_vars );
+
+	/**
+	 * Add metabox on theme version to select parent theme.
+	 */
+	pw_add_metabox_post_parent( array(
+		'labels'	=>	array(
+			'title'		=>	'Theme',
+			'search'	=>	'Search themes...'
+			),
+		'post_types' 	=> array( 'theme_version' ),
+		'query'	=>	array(
+			'post_type'			=>	'theme',
+			),
+		));
 
 
 }
