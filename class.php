@@ -2,30 +2,6 @@
 
 require_once __DIR__ . '/lib/wp-update-server/loader.php';
 
-/**
- * Search for the latest version of the requested theme.
- */
-add_filter( 'wp_update_server_find_package', 'wp_update_server_find_package_filter' );
-function wp_update_server_find_package_filter( $package ){
-
-	// Find the ID of the slug of the theme witht he specified slug
-
-	// Find the most recent child post of the theme, which is the latest version
-
-	// Return the latest version
-
-	/**
-	 * @todo Make a new input type on the Media Library, or ability to handle non-images
-	 * so that a ZIP file can be selected, and it shows the appropriate selection.
-	 * Make a variation on the wp-media-library directive...
-	 */
-
-	$package['filename'] = "/Users/phong/Projects/Artdroid/_WWW/wp-content/plugins/wp-updater/packages/artdroid.zip";
-
-
-	return $package;
-}
-
 class WP_Update_Server extends Wpup_UpdateServer{
 	/**
 	 * Replaces the built-in findPackage() function.
@@ -36,10 +12,25 @@ class WP_Update_Server extends Wpup_UpdateServer{
 		//Check if there's a slug.zip file in the package directory.
 		$package['slug'] = preg_replace('@[^a-z0-9\-_\.,+!]@i', '', $request->slug );
 		$package['safeSlug'] = preg_replace('@[^a-z0-9\-_\.,+!]@i', '', $package['slug'] );
-		$package['filename'] = $this->packageDirectory . '/' . $package['safeSlug'] . '.zip';
+		//$package['filename'] = $this->packageDirectory . '/' . $package['safeSlug'] . '.zip';
 		
 		// Filter so that filename can be changed
-		$package = apply_filters( 'wp_update_server_find_package', $package );
+		//$package = apply_filters( 'wp_update_server_find_package', $package );
+
+		// Find the ID of the slug of the theme with the specified slug
+		$theme = get_page_by_path( $package['safeSlug'], ARRAY_A, 'theme' );
+
+		// Exit if no theme found
+		if( empty( $theme ) )
+			$this->exitWithError( 'No Theme with the specified slug.', 400 );
+
+		/**
+		 * @todo Make a new input type on the Media Library, or ability to handle non-images
+		 * so that a ZIP file can be selected, and it shows the appropriate selection.
+		 * Make a variation on the wp-media-library directive...
+		 */
+		$package['filename'] = "/Users/phong/Projects/Artdroid/_WWW/wp-content/plugins/wp-updater/packages/artdroid.zip";
+
 
 		if ( !is_file($package['filename']) || !is_readable($package['filename']) ) {
 			return null;
@@ -121,3 +112,62 @@ class WP_Updater {
 }
 
 $wp_updater = new WP_Updater();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Search for the latest version of the requested theme
+ * And return the meta-data associated with it.
+ */
+add_filter( 'wp_update_server_find_package', 'wp_update_server_find_package_filter' );
+function wp_update_server_find_package_filter( $package ){
+
+	// Find the ID of the slug of the theme with the specified slug
+	$theme = get_page_by_path( $package['safeSlug'], ARRAY_A, 'theme' );
+
+	// Exit if no theme found
+	if( empty( $theme ) )
+		pw_exit_with_error( 'No Theme with the specified slug.', 400 );
+
+	// Find the most recent child post of the theme, which is the latest version
+	$query = new WP_Query( array(
+		'post_type' => 'theme_version',
+		'post_parent' => $theme['ID'],
+		'order' => 'DESC',
+		'orderby' => 'date',
+		'posts_per_page' => 1,
+		));
+
+	// Exit if no theme versions found
+	if( empty( $query->posts ) )
+		pw_exit_with_error( 'No Theme Version found with the specified slug.', 400 );
+
+	// Specify the link to the latest version of the theme
+	$package['details_url'] = get_permalink( $query->posts[0] );
+
+	//pw_log( 'theme_version_permalink', $theme_version_permalink );
+	// Return the latest version
+	// Get related blog post if available
+
+	/**
+	 * @todo Make a new input type on the Media Library, or ability to handle non-images
+	 * so that a ZIP file can be selected, and it shows the appropriate selection.
+	 * Make a variation on the wp-media-library directive...
+	 */
+
+	$package['filename'] = "/Users/phong/Projects/Artdroid/_WWW/wp-content/plugins/wp-updater/packages/artdroid.zip";
+
+
+	return $package;
+}

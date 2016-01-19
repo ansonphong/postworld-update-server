@@ -89,5 +89,34 @@ function wp_updater_post_types(){
 			),
 		));
 
+	/**
+	 * Add metabox on theme version to select theme files / details.
+	 */
+	pw_add_metabox_wp_postmeta( array(
+		'post_types'	=>	array( 'theme_version' ),
+		'metabox'		=>	array(
+			'title'		=>	'Theme Version',
+			'context'	=>	'normal',
+			),
+		'fields'	=>	array(
+			array(
+				'type'				=>	'file-id',
+				'label'				=>	'Theme Version File',
+				'description'		=>	'A .zip file containing the theme.',
+				'meta_key'			=>	'theme_file',
+				'icon'				=>	'pwi-file',
+				),
+			array(
+				'type'				=>	'text-input',
+				'label'				=>	'Details URL',
+				'description'		=>	'URL for the details page for this version.',
+				'meta_key'			=>	'details_url',
+				'icon'				=>	'pwi-link',
+				),
+			
+			),
+
+		));
+
 
 }
