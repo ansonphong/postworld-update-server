@@ -119,13 +119,6 @@ $wp_updater = new WP_Updater();
 
 
 
-
-
-
-
-
-
-
 /**
  * Search for the latest version of the requested theme
  * And return the meta-data associated with it.

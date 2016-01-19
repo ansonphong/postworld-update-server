@@ -1,7 +1,6 @@
 <?php
 
 add_action( 'init', 'wp_updater_post_types' );
-
 function wp_updater_post_types(){
 
 	///// POST TYPE : THEME /////
@@ -64,7 +63,7 @@ function wp_updater_post_types(){
 		'show_ui' => true, 
 		'show_in_menu' => true, 
 		'query_var' => true,
-		'rewrite' => array( 'slug' => 'theme-version' ),
+		'rewrite' => array( 'slug' => 'version' ),
 		'capability_type' => 'post',
 		'has_archive' => true, 
 		'hierarchical' => false,
