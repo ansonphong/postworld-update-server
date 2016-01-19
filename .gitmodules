@@ -1,3 +1,3 @@
 [submodule "lib/wp-update-server"]
 	path = lib/wp-update-server
-	url = git@github.com:YahnisElsts/wp-update-server.git
+	url = git@github.com:phongmedia/wp-update-server.git
