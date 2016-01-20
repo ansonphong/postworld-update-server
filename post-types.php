@@ -105,6 +105,7 @@ function wp_updater_post_types(){
 				'meta_key'			=>	'theme_file',
 				'icon'				=>	'pwi-file',
 				),
+			/*
 			array(
 				'type'				=>	'text-input',
 				'label'				=>	'Details URL',
@@ -112,6 +113,7 @@ function wp_updater_post_types(){
 				'meta_key'			=>	'details_url',
 				'icon'				=>	'pwi-link',
 				),
+			*/
 			
 			),
 
