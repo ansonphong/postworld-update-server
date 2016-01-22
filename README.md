@@ -10,4 +10,3 @@ This allows the theme developer to elegantly take control of the theme rollout p
 - Support for multiple themes
 - Add unlimited versions of themes
 - Allows for simple, organized changelog documentation
-- 
