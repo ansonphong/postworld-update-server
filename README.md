@@ -10,3 +10,6 @@ This allows the theme developer to elegantly take control of the theme rollout p
 - Support for multiple themes
 - Add unlimited versions of themes
 - Allows for simple, organized changelog documentation
+
+#### Upcoming Features
+- View detailed logs on which version of the theme users are running
