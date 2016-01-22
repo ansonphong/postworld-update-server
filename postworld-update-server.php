@@ -9,15 +9,12 @@ Special Thanks: Yahnis Elsts
 */
 
 add_action( 'after_setup_theme', 'wp_updater_init' );
-
 function wp_updater_init(){
 	// Require Postworld
 	if( !defined( 'POSTWORLD' ) )
 		return false;
 	
 	global $pw;
-	//pw_log( 'postworld active', $pw );
-
 	//include 'admin.php';
 	include 'post-types.php';
 	include 'class.php';
