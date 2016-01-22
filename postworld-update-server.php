@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Plugin Updater
-Description: Uses update API to serve custom updates.
+Plugin Name: Postworld Update Server
+Description: Update server for updating Postworld-based themes.
 Version: 1.0
 Author: Phong
 Author URI: https://phong.com
