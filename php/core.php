@@ -1,10 +1,5 @@
 <?php
-
-/**
- * @todo get Installed Version to work properly in the log.
- */
-
-require_once __DIR__ . '/lib/wp-update-server/loader.php';
+require_once __DIR__ . '/../lib/wp-update-server/loader.php';
 
 global $WP_Updater_Data;
 $WP_Updater_Data = array();
@@ -101,15 +96,9 @@ class WP_Update_Server extends Wpup_UpdateServer{
 	}
 
 
-	/**
-	 * Adjust information that will be logged.
-	 *
-	 * @param array $columns List of columns in the log entry.
-	 * @return array
-	 */
-	protected function filterLogInfo($columns) {
-		pw_log( $columns );
-		return $columns;
+	protected function filterLogRequest($request) {
+		PW_Update_Server_Database::add_request_log( $request );
+		return $request;
 	}
 
 }
@@ -140,8 +129,8 @@ class WP_Updater {
 		if ( get_query_var('update_action') ) {
 			$this->updateServer->handleRequest(array(
 				'action' => get_query_var('update_action'),
-				'slug'   => get_query_var('update_slug'),
-				'installed_version'   => get_query_var('installed_version'),
+				'slug' => get_query_var('update_slug'),
+				'installed_version' => get_query_var('installed_version'),
 			));
 		}
 	}

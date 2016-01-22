@@ -13,3 +13,6 @@ This allows the theme developer to elegantly take control of the theme rollout p
 
 #### Upcoming Features
 - View detailed logs on which version of the theme users are running
+
+#### Requirements
+- Postworld must be loaded in order for the plugin to activate.

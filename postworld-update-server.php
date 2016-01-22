@@ -8,17 +8,30 @@ Author URI: https://phong.com
 Special Thanks: Yahnis Elsts
 */
 
-add_action( 'after_setup_theme', 'wp_updater_init' );
-function wp_updater_init(){
+add_action( 'after_setup_theme', 'pw_update_server_init' );
+function pw_update_server_init(){
+	global $pw_update_server;
+	$pw_update_server = array(
+		'version' => 1.08,
+		);
+	define( 'PW_UPDATE_SERVER_VERSION', 'postworld-update-server-version' );
+
 	// Require Postworld
 	if( !defined( 'POSTWORLD' ) )
 		return false;
 	
 	global $pw;
-	//include 'admin.php';
-	include 'post-types.php';
-	include 'class.php';
+	include 'php/database.php';
+	//include 'php/admin.php';
+	include 'php/post-types.php';
+	include 'php/core.php';
 
-	// Test : http://artdroid/?update_action=artdroid&update_slug=artdroid
-	
+	// Instantiate the DB
+	global $pws_database;
+	$pws_database = new PW_Update_Server_Database();
+
+	// Test : http://artdroid/?update_action=artdroid&update_slug=artdroid	
 }
+
+
+
