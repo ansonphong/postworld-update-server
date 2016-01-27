@@ -39,7 +39,7 @@ function wp_updater_post_types(){
 	register_post_type( 'theme', $theme_vars );
 
 
-	///// POST TYPE : THEME /////
+	///// POST TYPE : THEME VERSION /////
 	$theme_labels = array(
 		'name' => "Theme Version",
 		'singular_name' => "Theme Version",
@@ -58,17 +58,17 @@ function wp_updater_post_types(){
 	
 	$theme_vars = array(
 		'labels' => $theme_labels,
-		'public' => true,
-		'publicly_queryable' => true,
+		'public' => false,
+		'publicly_queryable' => false,
 		'show_ui' => true, 
 		'show_in_menu' => true, 
-		'query_var' => true,
+		'query_var' => false,
 		'rewrite' => array( 'slug' => 'version' ),
 		'capability_type' => 'post',
-		'has_archive' => true, 
+		'has_archive' => false, 
 		'hierarchical' => false,
 		'menu_position' => 7,
-		'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author' ),
+		'supports' => array( 'title' ),
 		'taxonomies' => array(),
 		'menu_icon' => 'dashicons-album',
 	);
@@ -105,7 +105,7 @@ function wp_updater_post_types(){
 				'meta_key'			=>	'theme_file',
 				'icon'				=>	'pwi-file',
 				),
-			/*
+			
 			array(
 				'type'				=>	'text-input',
 				'label'				=>	'Details URL',
@@ -113,7 +113,7 @@ function wp_updater_post_types(){
 				'meta_key'			=>	'details_url',
 				'icon'				=>	'pwi-link',
 				),
-			*/
+			
 			
 			),
 
