@@ -45,8 +45,11 @@ class WP_Update_Server extends Wpup_UpdateServer{
 		// Get the latest theme file address, in the upoads directory
 		$package['filename'] = get_attached_file( $file_attachment_id );
 
-		// Add the permalink for later reference
-		$package['details_url'] = get_permalink( $query->posts[0] );
+		// Get details URL form postmeta for later referrence
+		$package['details_url'] = get_post_meta( $query->posts[0]->ID, 'theme_details_url', true );
+		// If there is no saved value, or an empty value, use the theme URL
+		if( empty( $package['details_url'] ) )
+			$package['details_url'] = get_permalink( $theme['ID'] );
 
 		$WP_Updater_Data['package'] = $package;
 

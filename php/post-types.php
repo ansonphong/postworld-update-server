@@ -110,7 +110,7 @@ function wp_updater_post_types(){
 				'type'				=>	'text-input',
 				'label'				=>	'Details URL',
 				'description'		=>	'URL for the details page for this version.',
-				'meta_key'			=>	'details_url',
+				'meta_key'			=>	'theme_details_url',
 				'icon'				=>	'pwi-link',
 				),
 			
