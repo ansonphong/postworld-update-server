@@ -1,7 +1,7 @@
 <?php
 
-add_action( 'init', 'wp_updater_post_types' );
-function wp_updater_post_types(){
+add_action( 'init', 'pw_updater_post_types' );
+function pw_updater_post_types(){
 
 	///// POST TYPE : THEME /////
 	$theme_labels = array(
@@ -74,6 +74,13 @@ function wp_updater_post_types(){
 	);
 	register_post_type( 'theme_version', $theme_vars );
 
+}
+
+/**
+ * Add Postwold Metaboxes
+ */
+add_action('init', 'pw_updater_add_metaboxes' );
+function pw_updater_add_metaboxes(){
 	/**
 	 * Add metabox on theme version to select parent theme.
 	 */
@@ -118,6 +125,4 @@ function wp_updater_post_types(){
 			),
 
 		));
-
-
 }

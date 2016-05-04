@@ -12,7 +12,7 @@ add_action( 'after_setup_theme', 'pw_update_server_init' );
 function pw_update_server_init(){
 	global $pw_update_server;
 	$pw_update_server = array(
-		'version' => 1.08,
+		'version' => 1.09,
 		);
 	define( 'PW_UPDATE_SERVER_VERSION', 'postworld-update-server-version' );
 
