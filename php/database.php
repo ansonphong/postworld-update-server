@@ -16,7 +16,7 @@ class PW_Update_Server_Database {
 
 	public function table_name(){
 		global $wpdb;
-		return $wpdb->pw_prefix.'update_server_log';
+		return $wpdb->postworld_prefix.'update_server_log';
 	}
 
 	/**
