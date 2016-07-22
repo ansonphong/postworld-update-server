@@ -98,7 +98,6 @@ class WP_Update_Server extends Wpup_UpdateServer{
 		return self::addQueryArg($query, $this->serverUrl);
 	}
 
-
 	protected function filterLogRequest($request) {
 		PW_Update_Server_Database::add_request_log( $request );
 		return $request;
@@ -129,6 +128,7 @@ class WP_Updater {
 	}
 
 	public function handleUpdateApiRequest() {
+
 		if ( get_query_var('update_action') ) {
 			$this->updateServer->handleRequest(array(
 				'action' => get_query_var('update_action'),

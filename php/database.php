@@ -16,7 +16,7 @@ class PW_Update_Server_Database {
 
 	public function table_name(){
 		global $wpdb;
-		return $wpdb->postworld_prefix.'update_server_log';
+		return $wpdb->prefix.'postworld_update_server_log';
 	}
 
 	/**
@@ -68,7 +68,6 @@ class PW_Update_Server_Database {
 	public function add_request_log( $request ){
 		$vars = $_GET;
 		$vars['wp_version'] = $request->wpVersion;
-
 		self::add_log(array(
 			'action' => $request->action,
 			'slug' => $request->slug,
